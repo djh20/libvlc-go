@@ -461,7 +461,7 @@ func (p *Player) AudioOutputDevice() (string, error) {
 	if cName == nil {
 		return "", ErrAudioOutputDeviceMissing
 	}
-	defer C.free(unsafe.Pointer(cName))
+	defer C.libvlc_free(unsafe.Pointer(cName))
 
 	return C.GoString(cName), nil
 }
@@ -629,7 +629,7 @@ func (p *Player) AspectRatio() (string, error) {
 	if aspectRatio == nil {
 		return "", getError()
 	}
-	defer C.free(unsafe.Pointer(aspectRatio))
+	defer C.libvlc_free(unsafe.Pointer(aspectRatio))
 
 	return C.GoString(aspectRatio), nil
 }
@@ -1121,7 +1121,7 @@ func (p *Player) UpdateVideoViewpoint(vp *VideoViewpoint, absolute bool) error {
 	if cVp == nil {
 		return errOrDefault(getError(), ErrVideoViewpointSet)
 	}
-	defer C.free(unsafe.Pointer(cVp))
+	defer C.libvlc_free(unsafe.Pointer(cVp))
 
 	// Copy viewpoint data.
 	cVp.f_yaw = C.float(vp.Yaw)

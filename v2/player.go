@@ -522,7 +522,7 @@ func (p *Player) AspectRatio() (string, error) {
 	if aspectRatio == nil {
 		return "", getError()
 	}
-	defer C.free(unsafe.Pointer(aspectRatio))
+	defer C.libvlc_free(unsafe.Pointer(aspectRatio))
 
 	return C.GoString(aspectRatio), nil
 }

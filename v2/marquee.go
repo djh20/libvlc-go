@@ -239,7 +239,7 @@ func (m *Marquee) getString(option C.uint) (string, error) {
 	if cVal == nil {
 		return "", errOrDefault(getError(), ErrInvalid)
 	}
-	defer C.free(unsafe.Pointer(cVal))
+	defer C.libvlc_free(unsafe.Pointer(cVal))
 
 	return C.GoString(cVal), nil
 }

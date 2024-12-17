@@ -300,7 +300,7 @@ func (m *Media) Location() (string, error) {
 	if mrl == nil {
 		return "", ErrMissingMediaLocation
 	}
-	defer C.free(unsafe.Pointer(mrl))
+	defer C.libvlc_free(unsafe.Pointer(mrl))
 
 	return urlToPath(C.GoString(mrl))
 }
@@ -335,7 +335,7 @@ func (m *Media) Meta(key MediaMetaKey) (string, error) {
 	if val == nil {
 		return "", nil
 	}
-	defer C.free(unsafe.Pointer(val))
+	defer C.libvlc_free(unsafe.Pointer(val))
 
 	return C.GoString(val), nil
 }
